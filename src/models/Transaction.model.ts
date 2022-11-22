@@ -1,4 +1,4 @@
-import { Model, INTEGER, FLOAT, DATE } from 'sequelize';
+import { Model, INTEGER, DECIMAL, DATE } from 'sequelize';
 import db from '.';
 import Account from './Account.model';
 
@@ -30,7 +30,7 @@ Transaction.init(
     },
     value: {
       allowNull: false,
-      type: FLOAT,
+      type: DECIMAL,
     },
     createdAt: {
       allowNull: false,
@@ -46,11 +46,11 @@ Transaction.init(
   },
 );
 
-Transaction.hasOne(Account, {
+Transaction.belongsTo(Account, {
   foreignKey: 'debitedAccountId',
   as: 'iddebitedAccount',
 });
-Transaction.hasOne(Account, {
+Transaction.belongsTo(Account, {
   foreignKey: 'creditedAccountId',
   as: 'idcreditedAccount',
 });
