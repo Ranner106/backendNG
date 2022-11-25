@@ -55,4 +55,8 @@ Transaction.belongsTo(Account, {
   as: 'idcreditedAccount',
 });
 
+Account.hasMany(Transaction, {
+  foreignKey: 'id',
+});
+
 export default Transaction;

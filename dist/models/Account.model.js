@@ -15,7 +15,7 @@ Account.init({
     },
     balance: {
         allowNull: false,
-        type: sequelize_1.FLOAT,
+        type: sequelize_1.DECIMAL,
     },
 }, {
     underscored: true,

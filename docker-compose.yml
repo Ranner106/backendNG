@@ -2,10 +2,34 @@ version: "3"
 services:
   database:
       image: postgres:10.17
+      container_name: database
+      platform: linux/x86_64
       environment:
        - "POSTGRES_USER=postgres"
        - "POSTGRES_PASSWORD=postgres"
        - "POSTGRES_DB=bancong"
       ports:
        - 5432:5432
-      
+      restart: 'always'
+      cap_add:
+        - SYS_NICE 
+  backend:
+    container_name: app_backend
+    build: ./
+
+    ports:
+      - 3001:3001
+    platform: linux/x86_64
+    volumes:
+      - ./:/app_backend
+    working_dir: /app_backend
+    depends_on:
+      - database    
+    environment:
+      - APP_PORT=3007
+      - JWT_SECRET=jwt_secret
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - DB_HOST=db
+      - DB_PORT=5432
+      - NODE_ENV=development

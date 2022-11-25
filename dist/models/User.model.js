@@ -34,5 +34,6 @@ User.init({
     timestamps: false,
 });
 User.hasOne(Account_model_1.default, { foreignKey: 'accountId', as: 'idAccount' });
+Account_model_1.default.belongsTo(User);
 exports.default = User;
 //# sourceMappingURL=User.model.js.map

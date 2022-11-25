@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node .",
+    "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
+    "dev": "nodemon --watch  \"./src/**\" ./src/server.ts",
+    "lint": "eslint ./src --ext .ts",
+    "test": "mocha -r ts-node/register ./src/tests/integration/*$NAME*.{test,spec}.ts -t 10000 --exit"
   },
   "repository": {
     "type": "git",
@@ -32,6 +36,7 @@
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^2.0.20",
     "prettier": "^2.7.1",
     "sequelize-cli": "^6.5.2",
     "ts-node": "^10.9.1",

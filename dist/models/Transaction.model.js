@@ -24,7 +24,7 @@ Transaction.init({
     },
     value: {
         allowNull: false,
-        type: sequelize_1.FLOAT,
+        type: sequelize_1.DECIMAL,
     },
     createdAt: {
         allowNull: false,
@@ -37,13 +37,16 @@ Transaction.init({
     modelName: 'Transaction',
     timestamps: false,
 });
-Transaction.hasOne(Account_model_1.default, {
+Transaction.belongsTo(Account_model_1.default, {
     foreignKey: 'debitedAccountId',
     as: 'iddebitedAccount',
 });
-Transaction.hasOne(Account_model_1.default, {
+Transaction.belongsTo(Account_model_1.default, {
     foreignKey: 'creditedAccountId',
     as: 'idcreditedAccount',
+});
+Account_model_1.default.hasMany(Transaction, {
+    foreignKey: 'id',
 });
 exports.default = Transaction;
 //# sourceMappingURL=Transaction.model.js.map
