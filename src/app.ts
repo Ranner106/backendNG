@@ -1,10 +1,14 @@
 import * as express from 'express';
+import * as cors from 'cors';
+import UserRouter from './database/router/UserRouter';
+import AccountRouter from './database/router/AccountRouter';
 
 class App {
   public app: express.Express;
 
   constructor() {
     this.app = express();
+    this.app.use(cors());
 
     this.config();
 
@@ -24,6 +28,9 @@ class App {
 
     this.app.use(express.json());
     this.app.use(accessControl);
+
+    this.app.use('/users', UserRouter);
+    this.app.use('/accounts', AccountRouter);
   }
 
   public start(PORT: string | number): void {

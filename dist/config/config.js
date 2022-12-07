@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.config = void 0;
 require("dotenv/config");
 const config = {
     username: process.env.POSTGRES_USER,
@@ -8,6 +9,7 @@ const config = {
     host: process.env.POSTGRES_HOST,
     dialect: 'postgres',
 };
+exports.config = config;
 module.exports = {
     development: config,
     test: config,

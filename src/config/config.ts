@@ -14,3 +14,5 @@ module.exports = {
   test: config,
   production: config,
 };
+
+module.exports = config;
