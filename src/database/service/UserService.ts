@@ -24,7 +24,7 @@ export default class UserService {
     const hash = await hashPassword(password);
     try {
       const newAccount = await Accounts.create(
-        {},
+        { balance: 100 },
         {
           transaction: t,
         },
